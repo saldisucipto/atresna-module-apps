@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_type_inventories');
             $table->string('part_number_inventories')->unique();
             $table->bigInteger('stok_awal_inventories')->default(0);
-            $table->bigInteger('stok_awal_inventories')->default(0);
+            $table->bigInteger('stok_aktual_inventories')->default(0);
             $table->float('modal_inventories')->default(0);
             $table->float('last_cost_inventories')->default(0);
             $table->date('date_last_cost_inventories')->nullable();
