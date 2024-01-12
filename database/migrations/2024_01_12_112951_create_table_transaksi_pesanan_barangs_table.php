@@ -11,20 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_transaksi_permintaan_barang', function (Blueprint $table) {
+        Schema::create('table_transaksi_pesanan_barang', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_permintaan_barang');
-            $table->integer('nomer_transaksi');
+            $table->string('kode_pesanan_barang');
             $table->unsignedBigInteger('id_inventory');
+            $table->integer('nomer_transaksi');
             $table->integer('quantity');
             $table->string('satuan', 50);
-            $table->integer('kirim_do')->nullable();
-            $table->integer('oder_po')->nullable();
+            $table->float('price')->default(0);
+            $table->float('discount')->default(0);
+            $table->float('ammount')->default(0);
             $table->string('keterangan')->nullable();
             $table->timestamps();
 
-            $table->foreign('kode_permintaan_barang')->references('kode_permintaan_barang')->on('transaksi_permintaan_barang')->onDelete('CASCADE');
             $table->foreign('id_inventory')->references('id')->on('master_inventories')->onDelete('CASCADE');
+            $table->foreign('kode_pesanan_barang')->references('kode_permintaan_barang')->on('transaksi_pesanan_barang')->onDelete('CASCADE');
         });
     }
 
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_transaksi_permintaan_barang');
+        Schema::dropIfExists('table_transaksi_pesanan_barang');
     }
 };
